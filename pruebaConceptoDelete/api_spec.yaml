@@ -1,0 +1,105 @@
+openapi: "3.0.0"
+info:
+  description: "API prueba de concepto metodo Delete"
+  title: "{title}"
+  version: 1.0.0
+
+tags:
+  - name: "pruebaConceptoDelete"
+  - name: "CORS"
+
+paths:
+  /pruebaConceptoDelete:
+    options:
+      tags:
+        - "CORS"
+      responses:
+        200:
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: 200
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: when_no_match
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: mock
+    
+    delete:
+      description: "Lambda de prueba de concepto para el metodo DELETE."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: 200
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'DELETE,HEAD,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        uri: {uri_arn_delete_prueba_concepto}
+        credentials: {credential}
+        passthroughBehavior: "when_no_match"
+        httpMethod: "DELETE"
+        type: "aws_proxy"
+      responses:
+        200:
+          description: "successful operation"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+        500:
+          description: "server error"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      tags:
+        - "pruebaConceptoDelete"
+
+components:
+  schemas:
+    Empty:
+      title: "Empty Schema"
+      type: "object"
+
+x-amazon-apigateway-cors:
+  allowOrigins: ["*"]
+  exposeHeaders: ["x-apigateway-header","x-amz-date","content-type", "Content-Type","Authorization"]
+  maxAge: 3600
+  allowMethods: ["GET","OPTIONS","POST","DELETE"]
+  allowHeaders: ["x-apigateway-header","x-amz-date","content-type", "Content-Type","Authorization"]

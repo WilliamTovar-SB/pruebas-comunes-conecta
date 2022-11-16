@@ -1,0 +1,106 @@
+openapi: "3.0.0"
+info:
+  description: "API prueba de concepto metodo Get"
+  title: "{title}"
+  version: 1.0.0
+
+tags:
+  - name: "pruebaConceptoGet"
+  - name: "CORS"
+
+paths:
+
+  /pruebaConceptoGet:
+    options:
+      tags:
+        - "CORS"
+      responses:
+        200:
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: 200
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        passthroughBehavior: when_no_match
+        requestTemplates:
+          application/json: "{\"statusCode\": 200}"
+        type: mock
+    
+    get:
+      description: "Lambda de prueba de concepto para el metodo GET."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+      x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: 200
+            responseParameters:
+              method.response.header.Access-Control-Allow-Methods: "'GET,HEAD,OPTIONS'"
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,Authorization'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+        uri: {uri_arn_get_prueba_concepto}
+        credentials: {credential}
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "aws_proxy"
+      responses:
+        200:
+          description: "successful operation"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+        500:
+          description: "server error"
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content: {}
+      tags:
+        - "pruebaConceptoGet"
+
+components:
+  schemas:
+    Empty:
+      title: "Empty Schema"
+      type: "object"
+
+x-amazon-apigateway-cors:
+  allowOrigins: ["*"]
+  exposeHeaders: ["x-apigateway-header","x-amz-date","content-type", "Content-Type","Authorization"]
+  maxAge: 3600
+  allowMethods: ["GET","OPTIONS","POST"]
+  allowHeaders: ["x-apigateway-header","x-amz-date","content-type", "Content-Type","Authorization"]

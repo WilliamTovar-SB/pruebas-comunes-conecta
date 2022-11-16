@@ -1,0 +1,171 @@
+{
+  "environment": {
+    "region": "us-east-1",
+    "fileApiSpec": "api_spec.yaml",
+    "pathApiSpec": "."
+  },
+  "s3": {
+    "dev": {
+      "lambda": "commons-dev-lambda"
+    },
+    "stage": {
+      "lambda": "commons-stage-lambda"
+    },
+    "prod": {
+      "lambda": "commons-prod-lambda"
+    }
+  },
+  "roles": {
+    "dev": {
+      "iamApiGateway": "arn:aws:iam::009635384771:role/commons-dev-role-apigateway"
+    },
+    "stage": {
+      "iamApiGateway": "arn:aws:iam::811487420354:role/commons-stage-role-apigateway"
+    },
+    "prod": {
+      "iamApiGateway": "arn:aws:iam::840419845488:role/commons-prod-role-apigateway"
+    }
+  },
+  "apigateway": {
+    "dev": {
+      "name": "commons-dev-core",
+      "xray": "true"
+    },
+    "stage": {
+      "name": "commons-stage-core",
+      "xray": "true"
+    },
+    "prod": {
+      "name": "commons-prod-core",
+      "xray": "false"
+    }
+  },
+  "lambda": {
+    "dev": {
+      "0": "commons-dev-pruebaConceptoGet",
+      "1": "commons-dev-pruebaConceptoPost",
+      "2": "commons-dev-pruebaConceptoDelete"
+    },
+    "stage": {
+      "0": "commons-stage-pruebaConceptoGet",
+      "1": "commons-stage-pruebaConceptoPost",
+      "2": "commons-stage-pruebaConceptoDelete"
+    },
+    "prod": {
+      "0": "commons-prod-pruebaConceptoGet",
+      "1": "commons-prod-pruebaConceptoPost",
+      "2": "commons-prod-pruebaConceptoDelete"
+    },
+    "handler": {
+      "0": "main.handler",
+      "1": "main.handler",
+      "2": "main.handler"
+    },
+    "pathHandler": {
+      "0": "dist",
+      "1": "dist",
+      "2": "dist"
+    },
+    "runtime": "nodejs14.x",
+    "timeout": "300",
+    "memorySize": "512"
+  },
+  "lambdaRole": {
+    "dev": {
+      "pruebaConceptoGet": "arn:aws:iam::009635384771:role/commons-dev-role-lambda-pruebaConceptoGet",
+      "pruebaConceptoPost": "arn:aws:iam::009635384771:role/commons-dev-role-lambda-pruebaConceptoPost",
+      "pruebaConceptoDelete": "arn:aws:iam::009635384771:role/commons-dev-role-lambda-pruebaConceptoDelete"
+    },
+    "stage": {
+      "pruebaConceptoGet": "arn:aws:iam::811487420354:role/commons-stage-role-lambda-pruebaConceptoGet",
+      "pruebaConceptoPost": "arn:aws:iam::811487420354:role/commons-stage-role-lambda-pruebaConceptoPost",
+      "pruebaConceptoDelete": "arn:aws:iam::811487420354:role/commons-stage-role-lambda-pruebaConceptoDelete"
+    },
+    "prod": {
+      "cpruebaConceptoGet": "arn:aws:iam::840419845488:role/commons-prod-role-lambda-pruebaConceptoGet",
+      "pruebaConceptoPost": "arn:aws:iam::840419845488:role/commons-prod-role-lambda-pruebaConceptoPost",
+      "pruebaConceptoDelete": "arn:aws:iam::840419845488:role/commons-prod-role-lambda-pruebaConceptoDelete"
+    }
+  },
+  /*
+  "xray": {
+    "dev": {
+      "commons-dev-pruebaConceptoGet": "true",
+
+    },
+    "stage": {
+      "commons-stage-pruebaConceptoGet": "true"
+    },
+    "prod": {
+      "commons-prod-pruebaConceptoGet": "false"
+    }
+  },
+  */
+  "swaggerParameters": {
+    "dev": {
+      "credential": "arn:aws:iam::009635384771:role/commons-dev-role-apigateway"
+    },
+    "stage": {
+      "credential": "arn:aws:iam::811487420354:role/commons-stage-role-apigateway"
+    },
+    "prod": {
+      "credential": "arn:aws:iam::840419845488:role/commons-prod-role-apigateway"
+    }
+  },
+  "urn_arn": {
+    "0": "uri_arn_get_prueba_concepto",
+    "0": "uri_arn_post_prueba_concepto",
+    "0": "uri_arn_delete_prueba_concepto",
+  },
+  "environments": {
+    "dev": {
+      "0": "TABLE=commons-dev-transaccion_firma_electronica,NIVEL_LOG=INFO,REGION=us-east-1,baseUrl=https://sandbox.esignlive.com",
+      "1": "TABLE=commons-dev-parametrizacion_firma_electronica,NIVEL_LOG=INFO,REGION=us-east-1",
+      "2": "TABLE=commons-dev-parametrizacion_firma_electronica,NIVEL_LOG=INFO,REGION=us-east-1,URLSESSIONTOKEN=https://sandbox.esignlive.com/apitoken/clientApp/accessToken,VERSISONONESPANE=11.21",
+      "3": "TABLE=commons-dev-parametrizacion_firma_electronica,NIVEL_LOG=INFO,REGION=us-east-1,URLSESSIONTOKEN=https://sandbox.esignlive.com/apitoken/clientApp/accessToken",
+      "4": "TABLE=commons-dev-parametrizacion_firma_electronica,NIVEL_LOG=INFO,baseUrl=https://sandbox.esignlive.com,clientAppId=17a86b3942c0e4eec88120d7b33,clientAppSecret=687964726122eb3133e06dd002ed85ef8e091f7ca205ce884aa2914cb63c437a350a161797,type=OWNER",
+      "5": "URL_MAIN_QUEUE=https://sqs.us-east-1.amazonaws.com/009635384771/commons-dev-firmaelectronica-notificacion-callback-queue,URL_DLQ_QUEUE=https://sqs.us-east-1.amazonaws.com/009635384771/commons-dev-firmaelectronica-notificacion-callback-queue-dlq",
+      "6": "STACK_ID=dev,IP=10.12.20.24,TABLE=commons-dev-parametrizacion_firma_electronica,APIKEY_ONESPAN=UG1YcVdNYXk3ZFEzOnRQU0h4dGtZbk1jTQ,URL_ONESPAN=https://sandbox.e-signlive.com/api,COMMONS_URL=https://fz73xehwah.execute-api.us-east-1.amazonaws.com/dev,COMMONS_API_KEY=2IrTvCrNUS3ETSNIMYNQS1QMnL03EZeZ6BNFaTOV"
+    },
+    "stage": {
+      "0": "TABLE=commons-stage-transaccion_firma_electronica,NIVEL_LOG=INFO,REGION=us-east-1,baseUrl=https://sandbox.esignlive.com",
+      "1": "TABLE=commons-stage-parametrizacion_firma_electronica,NIVEL_LOG=INFO,REGION=us-east-1",
+      "2": "TABLE=commons-stage-parametrizacion_firma_electronica,NIVEL_LOG=INFO,REGION=us-east-1,URLSESSIONTOKEN=https://sandbox.esignlive.com/apitoken/clientApp/accessToken,VERSISONONESPANE=11.21",
+      "3": "TABLE=commons-stage-parametrizacion_firma_electronica,NIVEL_LOG=INFO,REGION=us-east-1,URLSESSIONTOKEN=https://sandbox.esignlive.com/apitoken/clientApp/accessToken",
+      "4": "TABLE=commons-stage-parametrizacion_firma_electronica,NIVEL_LOG=INFO,baseUrl=https://sandbox.esignlive.com,clientAppId=17a86b3942c0e4eec88120d7b33,clientAppSecret=687964726122eb3133e06dd002ed85ef8e091f7ca205ce884aa2914cb63c437a350a161797,type=OWNER",
+      "5": "URL_MAIN_QUEUE=https://sqs.us-east-1.amazonaws.com/811487420354/commons-stage-firmaelectronica-notificacion-callback-queue,URL_DLQ_QUEUE=https://sqs.us-east-1.amazonaws.com/811487420354/commons-stage-firmaelectronica-notificacion-callback-queue-dlq",
+      "6": "STACK_ID=stage,IP=10.12.20.24,TABLE=commons-stage-parametrizacion_firma_electronica,APIKEY_ONESPAN=UG1YcVdNYXk3ZFEzOnRQU0h4dGtZbk1jTQ,URL_ONESPAN=https://sandbox.e-signlive.com/api,COMMONS_URL=https://c4huz7dmpc-vpce-0d1e15f4e7cf53d97.execute-api.us-east-1.amazonaws.com/stage,COMMONS_API_KEY=Du44p3y4VO7wZEjZH1uLH5EBtJg2i0Lj5V1Ws2Ws"
+    },
+    "prod": {
+      "0": "TABLE=commons-prod-transaccion_firma_electronica,NIVEL_LOG=ERROR,REGION=us-east-1,baseUrl=https://apps.esignlive.com",
+      "1": "TABLE=commons-prod-parametrizacion_firma_electronica,NIVEL_LOG=ERROR,REGION=us-east-1",
+      "2": "TABLE=commons-prod-parametrizacion_firma_electronica,NIVEL_LOG=ERROR,REGION=us-east-1,URLSESSIONTOKEN=https://apps.esignlive.com/apitoken/clientApp/accessToken,VERSISONONESPANE=11.21",
+      "3": "TABLE=commons-prod-parametrizacion_firma_electronica,NIVEL_LOG=ERROR,REGION=us-east-1,URLSESSIONTOKEN=https://apps.esignlive.com/apitoken/clientApp/accessToken",
+      "4": "TABLE=commons-prod-parametrizacion_firma_electronica,NIVEL_LOG=ERROR,baseUrl=https://apps.esignlive.com,clientAppId=17a68af86680ebb9e7ebaa3000d,clientAppSecret=6879647261d50aa8c103f6112f19139cddfa9a8bd286bff605d1cf3742f331ffa69080613d,type=OWNER",
+      "5": "URL_MAIN_QUEUE=https://sqs.us-east-1.amazonaws.com/840419845488/commons-prod-firmaelectronica-notificacion-callback-queue,URL_DLQ_QUEUE=https://sqs.us-east-1.amazonaws.com/840419845488/commons-prod-firmaelectronica-notificacion-callback-queue-dlq",
+      "6": "STACK_ID=prod,IP=10.12.20.24,TABLE=commons-prod-parametrizacion_firma_electronica,APIKEY_ONESPAN=SzFWYjFiZlJaZGsxOmJiYlIyMElkNG9nSw,URL_ONESPAN=https://apps.e-signlive.com/api,COMMONS_URL=https://03l44gahq8-vpce-0316f1f34c146e45d.execute-api.us-east-1.amazonaws.com/prod,COMMONS_API_KEY=c8Iu1bzb9F4N4P4arm40M6OemG4PdkGH1lM3lOHc"
+    }
+  },
+  "pathLambda": {
+    "0": "PruebaConceptoGet",
+    "1": "PruebaConceptoPost",
+    "2": "PruebaConceptoDelete"
+  },
+  "vpc": {
+    "dev": {
+      "subnetId": "subnet-0a2e19ac0ba2275d5,subnet-0a0cf8e6769dd15d3,subnet-04fb355c061ef259d",
+      "securityGroupId": "sg-03c6762cc7f714cc8",
+      "lambdas": "commons-dev-pruebaConceptoGet, commons-dev-pruebaConceptoPost, commons-dev-pruebaConceptoDelete" 
+    },
+    "stage": {
+      "subnetId": "subnet-0986d8e902b4deec7,subnet-0cdc8dbd9a3980500,subnet-0809f749c890117fa",
+      "securityGroupId": "sg-0c8b64fa38e0811da",
+      "lambdas": "commons-stg-pruebaConceptoGet, commons-stg-pruebaConceptoPost, commons-stg-pruebaConceptoDelete" 
+    },
+    "prod": {
+      "subnetId": "subnet-01ef58cd03f118b8f,subnet-098f3be0b136ef0ca,subnet-04110d76d244baa26",
+      "securityGroupId": "sg-0e8d3eb8a86a5b1c8",
+      "lambdas": "commons-prod-pruebaConceptoGet, commons-prod-pruebaConceptoPost, commons-prod-pruebaConceptoDelete" 
+    }
+  }
+}
